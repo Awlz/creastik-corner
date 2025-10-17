@@ -110,21 +110,12 @@ function ChartTooltipContent({
   className,
   indicator = "dot",
   hideLabel = false,
-  hideIndicator = false,
-  label,
-  labelFormatter,
-  labelClassName,
-  formatter,
-  color,
-  nameKey,
-  labelKey,
-}: React.ComponentProps<typeof RechartsPrimitive.Tooltip> &
-  React.ComponentProps<"div"> & {
-    hideLabel?: boolean
-    hideIndicator?: boolean
-    indicator?: "line" | "dot" | "dashed"
-    nameKey?: string
-    labelKey?: string
+  }: {
+  active?: boolean
+  payload?: any[]
+  className?: string
+  indicator?: "dot" | "line"
+  hideLabel?: boolean
   }) {
   const { config } = useChart()
 
