@@ -18,7 +18,7 @@ const nextConfig: NextConfig = {
   },
 
   // ✅ Pastikan tracing root benar
-  outputFileTracingRoot: path.resolve(__dirname, "../../"),
+  outputFileTracingRoot: __dirname,
 
   // ✅ Tambahkan pengecekan agar Vercel tidak error karena properti custom
   experimental: {
