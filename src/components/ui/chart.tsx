@@ -241,13 +241,22 @@ function ChartLegendContent({
   payload,
   verticalAlign = "bottom",
   nameKey,
-}: React.ComponentProps<"div"> &
-  Pick<RechartsPrimitive.LegendProps, "payload" | "verticalAlign"> & {
-    hideIcon?: boolean
-    nameKey?: string
-  }) {
+}: {
+  className?: string
+  hideIcon?: boolean
+  payload?: Array<{
+    value: string
+    color?: string
+    dataKey?: string
+  }>
+  verticalAlign?: "top" | "bottom"
+  nameKey?: string
+}) {
   const { config } = useChart()
-  if (!payload?.length) return null
+
+  if (!payload?.length) {
+    return null
+  }
 
   return (
     <div
@@ -264,23 +273,28 @@ function ChartLegendContent({
         return (
           <div
             key={item.value}
-            className="flex items-center gap-1.5 [&>svg]:h-3 [&>svg]:w-3 [&>svg]:text-muted-foreground"
+            className={cn(
+              "[&>svg]:text-muted-foreground flex items-center gap-1.5 [&>svg]:h-3 [&>svg]:w-3"
+            )}
           >
             {itemConfig?.icon && !hideIcon ? (
               <itemConfig.icon />
             ) : (
               <div
                 className="h-2 w-2 shrink-0 rounded-[2px]"
-                style={{ backgroundColor: item.color }}
+                style={{
+                  backgroundColor: item.color,
+                }}
               />
             )}
-            {itemConfig?.label}
+            {itemConfig?.label ?? item.value}
           </div>
         )
       })}
     </div>
   )
 }
+
 
 // =============================
 // ⚙️ Helper Function
