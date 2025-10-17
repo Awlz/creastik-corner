@@ -29,7 +29,7 @@ export default function Header() {
           {/* Logo + Brand */}
           <Link href="/" className="flex items-center gap-2">
             <Image
-              src="./logo.png"
+              src="/logo.png"
               alt="Creastik Corner Logo"
               width={32}
               height={32}
